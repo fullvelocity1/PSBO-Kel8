@@ -5,6 +5,7 @@ class NonFictionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
+      onTap: () => Navigator.of(context).pushNamed('/daftarbuku'),
       child: Center(
         child: Container(
             height: 271.5,

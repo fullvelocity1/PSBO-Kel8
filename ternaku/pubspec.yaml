@@ -61,6 +61,7 @@ flutter:
     - assets/images/nonfiction_button.png
     - assets/icons/fiction.png
     - assets/icons/woman.png
+    - assets/covers/laut_bercerita.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
