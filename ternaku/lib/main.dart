@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './animal_manager.dart';
-import './home.dart';
-import './daftarBuku.dart';
+import 'pages/home.dart';
+import 'pages/daftarBuku.dart';
 import './constants.dart';
 import './helpers/routegenerator.dart';
 

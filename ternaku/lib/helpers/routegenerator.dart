@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ternaku/daftarBuku.dart';
+import 'package:ternaku/constants.dart';
+import 'package:ternaku/pages/daftarBuku.dart';
+import 'package:ternaku/pages/detailbuku.dart';
 import '../main.dart';
-import '../home.dart';
+import '../pages/home.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -11,7 +13,15 @@ class RouteGenerator {
       case '/':
         return MaterialPageRoute(builder: (_) => Home());
       case '/daftarbuku':
-        return MaterialPageRoute(builder: (_) => DaftarBuku());
+        if (args is BookType) {
+          return MaterialPageRoute(builder: (_) => DaftarBuku(args));
+        }
+        return _errorRoute();
+      case '/detailbuku':
+        if (args is int) {
+          return MaterialPageRoute(builder: (_) => DetailBuku(args));
+        }
+        return _errorRoute();
       default:
         return _errorRoute();
     }

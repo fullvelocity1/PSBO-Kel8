@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:ternaku/constants.dart';
 
 class FictionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed('/daftarbuku'),
+      onTap: () => Navigator.of(context)
+          .pushNamed('/daftarbuku', arguments: BookType.Fiction),
       child: Center(
         child: Container(
             height: 271.5,
