@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ternaku/Items/buku.dart';
 import 'package:ternaku/constants.dart';
 import 'package:ternaku/pages/daftarBuku.dart';
 import 'package:ternaku/pages/detailbuku.dart';
@@ -14,11 +15,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Home());
       case '/daftarbuku':
         if (args is BookType) {
-          return MaterialPageRoute(builder: (_) => DaftarBuku(args));
+          return MaterialPageRoute(builder: (_) => DaftarBuku(tipe: args));
         }
         return _errorRoute();
       case '/detailbuku':
-        if (args is int) {
+        if (args is Buku) {
           return MaterialPageRoute(builder: (_) => DetailBuku(args));
         }
         return _errorRoute();

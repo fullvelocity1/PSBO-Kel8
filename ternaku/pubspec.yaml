@@ -63,6 +63,7 @@ flutter:
     #- assets/icons/woman.png
     - assets/covers/
     - assets/icons/
+    - assets/data/
     #- assets/icons/silang.png
     #- assets/icons/ceklis.png
 

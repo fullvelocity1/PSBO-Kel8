@@ -4,16 +4,15 @@ import 'package:ternaku/Items/buku.dart';
 import 'package:ternaku/constants.dart';
 
 class BookAvailStatus extends StatelessWidget {
-  List<Buku> list_buku = ListBuku.getDummyBooks();
-  int bookid;
+  Buku book;
 
-  BookAvailStatus(this.bookid);
+  BookAvailStatus(this.book);
 
   @override
   Widget build(BuildContext context) {
     String status = '';
     String img = '';
-    if (list_buku[bookid].availability()) {
+    if (book.availability()) {
       return Card(
         margin: EdgeInsets.all(5.0),
         color: Colors.white,

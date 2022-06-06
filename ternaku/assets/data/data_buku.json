@@ -1,0 +1,26 @@
+[
+    {
+         "id": 1,
+          "judul": "Laut Bercerita",
+          "penulis": "Leila S. Chudori",
+          "genre": "Genre.Historical",
+          "imgCover": "laut_bercerita",
+          "stok": 1,
+          "pages": 389,
+          "bahasa": "Indonesia",
+          "harga": "100.000",
+          "tipe": "BookType.Fiction"
+    },
+    {
+        "id": 1,
+          "judul": "The Poppy War",
+          "penulis": "R.F Kuang",
+          "genre": "Genre.Historical",
+          "imgCover": "the_poppy_war",
+          "stok": 1,
+          "pages": 413,
+          "bahasa": "Indonesia",
+          "harga": "130.000",
+          "tipe": "BookType.NonFiction"
+    }
+]

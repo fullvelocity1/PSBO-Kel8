@@ -6,10 +6,9 @@ import '../constants.dart';
 import 'package:ternaku/Items/bookavailability.dart';
 
 class DetailBuku extends StatelessWidget {
-  final list_buku = ListBuku.getDummyBooks();
-  int bookid;
+  Buku book;
 
-  DetailBuku(this.bookid);
+  DetailBuku(this.book);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,9 @@ class DetailBuku extends StatelessWidget {
                 top: 30.0,
                 left: MediaQuery.of(context).size.width / 3,
                 right: MediaQuery.of(context).size.width / 3),
-            child: CoverBuku(bookid: bookid)),
+            child: CoverBuku(
+              imgCover: book.getImgCover(),
+            )),
         // Row Genre, Pages, Bahasa
         Container(
           margin: EdgeInsets.all(10.0),
@@ -49,7 +50,7 @@ class DetailBuku extends StatelessWidget {
                     style: TextStyle(fontSize: 18, color: heading1Colors),
                   ),
                   Text(
-                    '${list_buku[bookid].getGenre()}',
+                    '${book.getGenre()}',
                     style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
                 ],
@@ -64,7 +65,7 @@ class DetailBuku extends StatelessWidget {
                     style: TextStyle(fontSize: 18, color: heading1Colors),
                   ),
                   Text(
-                    '${list_buku[bookid].getPages()}',
+                    '${book.getPages()}',
                     style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
                 ],
@@ -79,7 +80,7 @@ class DetailBuku extends StatelessWidget {
                     style: TextStyle(fontSize: 18, color: heading1Colors),
                   ),
                   Text(
-                    list_buku[bookid].getBahasa(),
+                    book.getBahasa(),
                     style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
                 ],
@@ -103,20 +104,19 @@ class DetailBuku extends StatelessWidget {
                       children: [
                         // Harga
                         Text(
-                          'Rp. ${list_buku[bookid].getHarga()}',
+                          'Rp. ${book.getHarga()}',
                           style: TextStyle(fontSize: 21),
                         ),
                         // Judul
-                        Text(list_buku[bookid].getJudul(),
-                            style: TextStyle(fontSize: 25)),
+                        Text(book.getJudul(), style: TextStyle(fontSize: 25)),
                         // Author
-                        Text(list_buku[bookid].getPenulis(),
+                        Text(book.getPenulis(),
                             style: TextStyle(
                                 fontSize: 20.0, color: heading1Colors)),
                       ],
                     ),
                     //Availability
-                    BookAvailStatus(bookid),
+                    BookAvailStatus(book),
                   ],
                 ),
               ],

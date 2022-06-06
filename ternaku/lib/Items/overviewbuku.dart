@@ -6,17 +6,16 @@ import './coverbuku.dart';
 import './bookavailability.dart';
 
 class OverviewBuku extends StatelessWidget {
-  final list_buku = ListBuku.getDummyBooks();
-  int bookid;
+  Buku book;
 
-  OverviewBuku({required this.bookid}) {}
+  OverviewBuku({required this.book}) {}
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
       onTap: () =>
-          Navigator.of(context).pushNamed('/detailbuku', arguments: bookid),
+          Navigator.of(context).pushNamed('/detailbuku', arguments: book),
       child: Container(
         decoration: BoxDecoration(
             border: Border(
@@ -32,7 +31,7 @@ class OverviewBuku extends StatelessWidget {
                   right: MediaQuery.of(context).size.width / 20,
                   bottom: MediaQuery.of(context).size.width / 20),
               child: CoverBuku(
-                bookid: bookid,
+                imgCover: book.getImgCover(),
                 scale: 1.2,
               ),
             ),
@@ -45,12 +44,12 @@ class OverviewBuku extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            list_buku[bookid].judul,
+                            book.getJudul(),
                             style: TextStyle(fontSize: 24),
                             textAlign: TextAlign.left,
                           ),
                           Text(
-                            list_buku[bookid].penulis,
+                            book.getPenulis(),
                             style: TextStyle(fontSize: 18),
                             textAlign: TextAlign.left,
                           ),
@@ -69,7 +68,7 @@ class OverviewBuku extends StatelessWidget {
                                     left: 3.0,
                                     right: 3.0),
                                 child: Text(
-                                  '${list_buku[bookid].getGenre()}',
+                                  '${book.getGenre()}',
                                   style: TextStyle(fontSize: 12),
                                   textAlign: TextAlign.left,
                                 ),
@@ -77,7 +76,7 @@ class OverviewBuku extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Rp. ${list_buku[bookid].getHarga()}',
+                            'Rp. ${book.getHarga()}',
                             style: TextStyle(fontSize: 22),
                             textAlign: TextAlign.left,
                           ),
@@ -85,7 +84,7 @@ class OverviewBuku extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(),
-                              BookAvailStatus(bookid),
+                              BookAvailStatus(book),
                             ],
                           )
                         ]),
