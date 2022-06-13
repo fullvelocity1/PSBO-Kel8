@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './animal_manager.dart';
 import 'pages/home.dart';
 import 'pages/daftarBuku.dart';
 import './constants.dart';

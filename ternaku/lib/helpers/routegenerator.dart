@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ternaku/Items/buku.dart';
+import 'package:ternaku/model/buku.dart';
 import 'package:ternaku/constants.dart';
 import 'package:ternaku/pages/daftarBuku.dart';
 import 'package:ternaku/pages/detailbuku.dart';

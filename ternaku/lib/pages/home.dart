@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'daftarBuku.dart';
 import '../constants.dart';
-import '../Sections/fictionBooks.dart';
-import '../Sections/nonfictionBooks.dart';
+import 'components/fictionBooks.dart';
+import 'components/nonfictionBooks.dart';
 
 class Home extends StatelessWidget {
   @override

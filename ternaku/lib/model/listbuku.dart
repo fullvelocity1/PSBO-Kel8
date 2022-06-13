@@ -1,4 +1,4 @@
-import 'package:ternaku/Items/buku.dart';
+import 'package:ternaku/model/buku.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ternaku/Items/overviewbuku.dart';
-import '../Items/listbuku.dart';
+import 'package:ternaku/pages/components/overviewbuku.dart';
+import '../model/listbuku.dart';
 import 'package:ternaku/constants.dart';
-import '../Items/buku.dart';
+import '../model/buku.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 

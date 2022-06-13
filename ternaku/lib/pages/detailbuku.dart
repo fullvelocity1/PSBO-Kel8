@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ternaku/Items/buku.dart';
-import 'package:ternaku/Items/listbuku.dart';
-import 'package:ternaku/Items/coverbuku.dart';
+import 'package:ternaku/model/buku.dart';
+import 'package:ternaku/model/listbuku.dart';
+import 'package:ternaku/pages/components/coverbuku.dart';
 import '../constants.dart';
-import 'package:ternaku/Items/bookavailability.dart';
+import 'package:ternaku/pages/components/bookavailability.dart';
 
 class DetailBuku extends StatelessWidget {
   Buku book;

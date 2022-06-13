@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ternaku/Items/buku.dart';
-import 'package:ternaku/Items/listbuku.dart';
+import 'package:ternaku/model/buku.dart';
+import 'package:ternaku/model/listbuku.dart';
 
 class CoverBuku extends StatelessWidget {
   String imgCover;
