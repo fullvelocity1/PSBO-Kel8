@@ -53,6 +53,13 @@ class _DaftarBukuState extends State<DaftarBuku> {
     final str_split = str_buku.split('.');
     readJson();
     return Scaffold(
+        floatingActionButton: FloatingActionButton(
+            child: Icon(
+              Icons.add,
+              size: 35,
+            ),
+            backgroundColor: Color(0xFF59979B),
+            onPressed: () => Navigator.of(context).pushNamed('/tambahbuku')),
         appBar: AppBar(
           backgroundColor: primaryColor,
           title: Text(

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ternaku/model/buku.dart';
 import 'package:ternaku/constants.dart';
+import 'package:ternaku/pages/admin_addBookPage.dart';
 import 'package:ternaku/pages/daftarBuku.dart';
 import 'package:ternaku/pages/detailbuku.dart';
+import 'package:ternaku/pages/admin_addBookPage.dart';
+
 import '../main.dart';
 import '../pages/home.dart';
 
@@ -23,6 +26,8 @@ class RouteGenerator {
           return MaterialPageRoute(builder: (_) => DetailBuku(args));
         }
         return _errorRoute();
+      case '/tambahbuku':
+        return MaterialPageRoute(builder: (_) => BookForm());
       default:
         return _errorRoute();
     }
