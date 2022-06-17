@@ -3,6 +3,7 @@ import 'package:ternaku/constants.dart';
 import 'package:ternaku/pages/components/rounded_button.dart';
 import 'package:ternaku/helpers/loginAuth.dart';
 import 'package:ternaku/model/user.dart';
+import 'package:ternaku/model/admin.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -84,8 +85,14 @@ class Login extends StatelessWidget {
                             User login_user = User(email_value, password_value);
                             LoginAuth authenticator = LoginAuth(login_user);
                             String response = authenticator.userAuth();
-                            if (response == "Login Successful") {
-                              Navigator.of(context).pushNamed('/home');
+                            if (response == "Admin Login Successful") {
+                              login_user =
+                                  Admin(email_value, password_value, "admin");
+                              Navigator.of(context)
+                                  .pushNamed('/home', arguments: login_user);
+                            } else if (response == "Login Successful") {
+                              Navigator.of(context)
+                                  .pushNamed('/home', arguments: login_user);
                             } else {
                               SnackBar snackBar = SnackBar(
                                 content: Text(email_value + password_value),

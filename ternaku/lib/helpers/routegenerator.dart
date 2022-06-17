@@ -7,6 +7,8 @@ import 'package:ternaku/pages/daftarBuku.dart';
 import 'package:ternaku/pages/detailbuku.dart';
 import 'package:ternaku/pages/admin_addBookPage.dart';
 import 'package:ternaku/pages/login.dart';
+import 'package:ternaku/model/user.dart';
+import 'package:ternaku/model/admin.dart';
 
 import '../main.dart';
 import '../pages/home.dart';
@@ -19,10 +21,14 @@ class RouteGenerator {
       case '/':
         return MaterialPageRoute(builder: (_) => Login());
       case '/home':
-        return MaterialPageRoute(builder: (_) => Home());
+        if (args is User) {
+          return MaterialPageRoute(builder: (_) => Home(args));
+        }
+        return _errorRoute();
       case '/daftarbuku':
-        if (args is BookType) {
-          return MaterialPageRoute(builder: (_) => DaftarBuku(tipe: args));
+        if (args is List<dynamic>) {
+          return MaterialPageRoute(
+              builder: (_) => DaftarBuku(tipe: args[0], user: args[1]));
         }
         return _errorRoute();
       case '/detailbuku':
@@ -31,7 +37,10 @@ class RouteGenerator {
         }
         return _errorRoute();
       case '/tambahbuku':
-        return MaterialPageRoute(builder: (_) => BookForm());
+        if (args is Admin) {
+          return MaterialPageRoute(builder: (_) => BookForm(user: args));
+        }
+        return _errorRoute();
       default:
         return _errorRoute();
     }

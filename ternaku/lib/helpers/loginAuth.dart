@@ -1,5 +1,6 @@
 import 'package:ternaku/model/user.dart';
 import 'package:ternaku/model/listuser.dart';
+import 'package:ternaku/model/admin.dart';
 
 class LoginAuth {
   ListUser userDatabase = ListUser();
@@ -19,6 +20,9 @@ class LoginAuth {
       User check_user = list_user[i];
       if (check_user.getEmail() == em) {
         if (check_user.getPassword() == pw) {
+          if (check_user.getEmail() == "admin") {
+            return "Admin Found";
+          }
           return "Found";
         }
       }
@@ -33,6 +37,8 @@ class LoginAuth {
     String search_response = credSearch(check_email, check_password);
     if (search_response == "Found") {
       return "Login Successful";
+    } else if (search_response == "Admin Found") {
+      return "Admin Login Successful";
     } else if (search_response == "Not Found") {
       return "Invalid Credentials";
     } else {

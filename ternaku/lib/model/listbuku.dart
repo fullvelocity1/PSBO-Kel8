@@ -13,8 +13,16 @@ class ListBuku {
     list_buku = new_list;
   }
 
+  factory ListBuku.fromJson(List<dynamic> parsedJson) {
+    List<Buku> list_buku = [];
+    list_buku = parsedJson.map((i) => Buku.fromJson(i)).toList();
+
+    return ListBuku(list_buku);
+  }
+
   List<Buku> getDummyBooks() {
     return list_buku;
+    // return [
     //   Buku(
     //       id: 1,
     //       judul: "Laut Bercerita",
@@ -147,5 +155,6 @@ class ListBuku {
     //       bahasa: "Indonesia",
     //       harga: "130.000",
     //       tipe: BookType.NonFiction),
+    // ];
   }
 }

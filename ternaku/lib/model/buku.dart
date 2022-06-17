@@ -26,6 +26,54 @@ class Buku {
       required this.harga,
       required this.tipe});
 
+  factory Buku.newBook(
+          int id,
+          String judul,
+          String penulis,
+          Genre genre,
+          String imgCover,
+          int stok,
+          int pages,
+          String bahasa,
+          String harga,
+          BookType tipe) =>
+      Buku(
+          id: id,
+          judul: judul,
+          penulis: penulis,
+          genre: genre,
+          imgCover: imgCover,
+          stok: stok,
+          pages: pages,
+          bahasa: bahasa,
+          harga: harga,
+          tipe: tipe);
+
+  factory Buku.fromJson(Map<String, dynamic> json) => Buku(
+      id: json["id"],
+      judul: json["judul"],
+      penulis: json["penulis"],
+      genre: json["genre"],
+      imgCover: json["imgCover"],
+      stok: json["stok"],
+      pages: json["pages"],
+      bahasa: json["bahasa"],
+      harga: json["harga"],
+      tipe: json["tipe"]);
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "judul": judul,
+        "penulis": penulis,
+        "genre": genre,
+        "imgCover": imgCover,
+        "stok": stok,
+        "pages": pages,
+        "bahasa": bahasa,
+        "harga": harga,
+        "tipe": tipe
+      };
+
   bool availability() {
     if (getStok() > 0) {
       return true;

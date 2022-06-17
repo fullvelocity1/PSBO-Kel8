@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:ternaku/constants.dart';
 import 'package:ternaku/model/buku.dart';
+import 'package:ternaku/model/listbuku.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'package:ternaku/helpers/book_manager.dart';
+import 'package:ternaku/model/admin.dart';
+import 'package:ternaku/model/user.dart';
 
 class BookForm extends StatefulWidget {
+  Admin user = Admin('', '', '');
+  BookForm({Key? key, required this.user}) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _BookFormState();
-  }
+  _BookFormState createState() => _BookFormState(user);
 }
 
 class _BookFormState extends State<BookForm> {
@@ -24,10 +32,33 @@ class _BookFormState extends State<BookForm> {
   String? dropdownvalue;
   String? ddvalue_jenisbuku;
   String? ddvalue_bahasa;
+  Admin user;
 
   final _formKey = GlobalKey<FormState>();
-  final jenis_buku = ['Fiction', 'Non-Fiction'];
+  final jenis_buku = ['Fiction', 'NonFiction'];
   final bahasa = ['Indonesia', 'Inggris'];
+
+  // Fetch content from the json file
+
+  _BookFormState(this.user);
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('${path}/counter.txt');
+  }
+
+  Future<File> writeCounter(int counter) async {
+    final file = await _localFile;
+
+    // Write the file
+    return file.writeAsString('$counter');
+  }
 
   DropdownMenuItem<String> buildMenuItem(String Item) =>
       DropdownMenuItem(value: Item, child: Text(Item));
@@ -57,6 +88,21 @@ class _BookFormState extends State<BookForm> {
         validator: (value) {
           if (value!.isEmpty) {
             return textInput + ' tidak boleh kosong';
+          }
+          if (textInput == "Judul Buku") {
+            if (value != null) _judulbuku = value;
+          }
+          if (textInput == "Penulis") {
+            if (value != null) _penulis = value;
+          }
+          if (textInput == "Harga") {
+            if (value != null) _harga = value;
+          }
+          if (textInput == "Halaman") {
+            if (value != null) _pages = value;
+          }
+          if (textInput == "Genre") {
+            if (value != null) _genre = value;
           }
         },
         onSaved: (value) {
@@ -149,6 +195,11 @@ class _BookFormState extends State<BookForm> {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+    List<Buku> list_buku = [];
+    ListBuku library = ListBuku([]);
+    manager.readBooks();
+    library = manager.library;
+    list_buku = library.getDummyBooks();
 
     return Scaffold(
       key: _scaffoldKey,
@@ -192,9 +243,29 @@ class _BookFormState extends State<BookForm> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         //check validitas data
+
+                        final input_buku = Buku.newBook(
+                            123,
+                            _judulbuku,
+                            _penulis,
+                            Genre.values.firstWhere(
+                                (e) => e.toString() == 'Genre.' + _genre),
+                            "laut_bercerita",
+                            10,
+                            int.parse(_pages),
+                            _bahasa,
+                            _harga,
+                            BookType.values.firstWhere((e) =>
+                                e.toString() ==
+                                'BookType.' + ddvalue_jenisbuku.toString()));
+                        user.addBook(input_buku);
+                        // list_buku.add(input_buku);
+                        // library.addNewList(list_buku);
+                        // manager.writeBooks(library);
                         //setelah data valid
                         final snackbar = SnackBar(
                           content: Text("Menambah buku berhasil!"),
+                          // content: Text(list_buku.length.toString()),
                         );
                         _scaffoldKey.currentState!.showSnackBar(snackbar);
                       }

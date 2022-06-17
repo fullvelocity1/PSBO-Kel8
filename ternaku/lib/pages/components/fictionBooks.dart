@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:ternaku/constants.dart';
+import 'package:ternaku/model/user.dart';
+import 'package:ternaku/model/admin.dart';
 
 class FictionButton extends StatelessWidget {
+  User user = User('', '');
+  FictionButton(this.user);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
-      onTap: () => Navigator.of(context)
-          .pushNamed('/daftarbuku', arguments: BookType.Fiction),
+      onTap: () => user.lihatKatalog(context, BookType.Fiction),
       child: Center(
         child: Container(
             height: 271.5,

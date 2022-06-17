@@ -5,56 +5,36 @@ import 'package:ternaku/constants.dart';
 import '../model/buku.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:ternaku/helpers/book_manager.dart';
+import 'package:ternaku/model/user.dart';
+import 'package:ternaku/model/admin.dart';
 
 class DaftarBuku extends StatefulWidget {
   final BookType tipe;
-  const DaftarBuku({Key? key, required this.tipe}) : super(key: key);
+  final User user;
+  const DaftarBuku({Key? key, required this.tipe, required this.user})
+      : super(key: key);
 
   @override
-  _DaftarBukuState createState() => _DaftarBukuState(tipe);
+  _DaftarBukuState createState() => _DaftarBukuState(tipe, user);
 }
 
 class _DaftarBukuState extends State<DaftarBuku> {
-  List<Buku> list_buku = [];
-  ListBuku library = ListBuku([]);
-
-  // Fetch content from the json file
-  Future<void> readJson() async {
-    final String response =
-        await rootBundle.loadString('assets/data/data_buku.json');
-    final data = await json.decode(response);
-    print(data);
-    setState(() {
-      for (var i = 0; i < data.length; i++) {
-        list_buku.add(Buku(
-            id: data[i]["id"],
-            judul: data[i]["judul"],
-            penulis: data[i]["penulis"],
-            genre: Genre.values
-                .firstWhere((e) => e.toString() == data[i]["genre"]),
-            imgCover: data[i]["imgCover"],
-            stok: data[i]["stok"],
-            pages: data[i]["pages"],
-            bahasa: data[i]["bahasa"],
-            harga: data[i]["harga"],
-            tipe: BookType.values
-                .firstWhere((e) => e.toString() == data[i]["tipe"])));
-      }
-      library.addNewList(list_buku);
-    });
-  }
+  User user = User('', '');
 
   BookType tipe_buku = BookType.Unidentified;
 
-  _DaftarBukuState(this.tipe_buku) {
-    readJson();
+  _DaftarBukuState(this.tipe_buku, this.user) {
+    initState();
   }
 
   @override
   Widget build(BuildContext context) {
     String str_buku = tipe_buku.toString();
     final str_split = str_buku.split('.');
-
+    manager.readBooks();
+    ListBuku library = manager.library;
+    List<Buku> list_buku = library.getDummyBooks();
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             child: Icon(
@@ -62,7 +42,11 @@ class _DaftarBukuState extends State<DaftarBuku> {
               size: 35,
             ),
             backgroundColor: Color(0xFF59979B),
-            onPressed: () => Navigator.of(context).pushNamed('/tambahbuku')),
+            onPressed: () {
+              if (user is Admin) {
+                Navigator.of(context).pushNamed('/tambahbuku', arguments: user);
+              }
+            }),
         appBar: AppBar(
           backgroundColor: primaryColor,
           title: Text(

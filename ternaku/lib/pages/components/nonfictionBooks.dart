@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../constants.dart';
+import 'package:ternaku/model/user.dart';
+import 'package:ternaku/model/admin.dart';
 
 class NonFictionButton extends StatelessWidget {
+  User user = User('', '');
+  NonFictionButton(this.user);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
-      onTap: () => Navigator.of(context)
-          .pushNamed('/daftarbuku', arguments: BookType.NonFiction),
+      onTap: () => user.lihatKatalog(context, BookType.NonFiction),
       child: Center(
         child: Container(
             height: 271.5,
