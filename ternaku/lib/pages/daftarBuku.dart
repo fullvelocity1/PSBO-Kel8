@@ -12,19 +12,22 @@ import 'package:ternaku/model/admin.dart';
 class DaftarBuku extends StatefulWidget {
   final BookType tipe;
   final User user;
-  const DaftarBuku({Key? key, required this.tipe, required this.user})
+  final String role;
+  const DaftarBuku(
+      {Key? key, required this.tipe, required this.user, required this.role})
       : super(key: key);
 
   @override
-  _DaftarBukuState createState() => _DaftarBukuState(tipe, user);
+  _DaftarBukuState createState() => _DaftarBukuState(tipe, user, role);
 }
 
 class _DaftarBukuState extends State<DaftarBuku> {
   User user = User('', '');
+  String role = '';
 
   BookType tipe_buku = BookType.Unidentified;
 
-  _DaftarBukuState(this.tipe_buku, this.user) {
+  _DaftarBukuState(this.tipe_buku, this.user, this.role) {
     initState();
   }
 
@@ -43,7 +46,7 @@ class _DaftarBukuState extends State<DaftarBuku> {
             ),
             backgroundColor: Color(0xFF59979B),
             onPressed: () {
-              if (user is Admin) {
+              if (role == "admin") {
                 Navigator.of(context).pushNamed('/tambahbuku', arguments: user);
               }
             }),
@@ -68,7 +71,7 @@ class _DaftarBukuState extends State<DaftarBuku> {
                       itemCount: list_buku.length,
                       itemBuilder: (BuildContext ctx, int index) {
                         if (list_buku[index].getType() == tipe_buku) {
-                          return OverviewBuku(book: list_buku[index]);
+                          return user.lihatDetailBuku(list_buku[index]);
                         } else {
                           return SizedBox.shrink();
                         }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ternaku/constants.dart';
+import 'buku.dart';
+import 'package:ternaku/pages/components/overviewbuku.dart';
 
 class User {
   String email = '';
@@ -8,7 +10,11 @@ class User {
   User(this.email, this.password);
 
   lihatKatalog(BuildContext ctx, BookType tipe) {
-    Navigator.of(ctx).pushNamed('/daftarbuku', arguments: [tipe, this]);
+    Navigator.of(ctx).pushNamed('/daftarbuku', arguments: [tipe, this, "user"]);
+  }
+
+  lihatDetailBuku(Buku book) {
+    return OverviewBuku(book: book);
   }
 
   String getEmail() {

@@ -3,6 +3,7 @@ import 'package:ternaku/model/buku.dart';
 import 'package:ternaku/model/listbuku.dart';
 import 'package:ternaku/helpers/book_manager.dart';
 import 'package:ternaku/constants.dart';
+import 'package:flutter/material.dart';
 
 class Admin extends User {
   String permission = 'admin';
@@ -16,5 +17,11 @@ class Admin extends User {
     list_buku.add(book);
     library.addNewList(list_buku);
     manager.writeBooks(library);
+  }
+
+  @override
+  lihatKatalog(BuildContext ctx, BookType tipe) {
+    Navigator.of(ctx)
+        .pushNamed('/daftarbuku', arguments: [tipe, this, "admin"]);
   }
 }

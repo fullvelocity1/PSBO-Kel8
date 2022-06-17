@@ -253,7 +253,7 @@ class _BookFormState extends State<BookForm> {
                             "laut_bercerita",
                             10,
                             int.parse(_pages),
-                            _bahasa,
+                            ddvalue_bahasa.toString(),
                             _harga,
                             BookType.values.firstWhere((e) =>
                                 e.toString() ==

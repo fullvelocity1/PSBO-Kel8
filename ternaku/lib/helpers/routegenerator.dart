@@ -28,7 +28,11 @@ class RouteGenerator {
       case '/daftarbuku':
         if (args is List<dynamic>) {
           return MaterialPageRoute(
-              builder: (_) => DaftarBuku(tipe: args[0], user: args[1]));
+              builder: (_) => DaftarBuku(
+                    tipe: args[0],
+                    user: args[1],
+                    role: args[2],
+                  ));
         }
         return _errorRoute();
       case '/detailbuku':
