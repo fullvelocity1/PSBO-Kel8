@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ternaku/model/buku.dart';
 import 'package:ternaku/constants.dart';
 import 'package:ternaku/pages/admin_addBookPage.dart';
+import 'package:ternaku/pages/login.dart';
 import 'package:ternaku/pages/daftarBuku.dart';
 import 'package:ternaku/pages/detailbuku.dart';
 import 'package:ternaku/pages/admin_addBookPage.dart';
+import 'package:ternaku/pages/login.dart';
 
 import '../main.dart';
 import '../pages/home.dart';
@@ -15,6 +17,8 @@ class RouteGenerator {
 
     switch (settings.name) {
       case '/':
+        return MaterialPageRoute(builder: (_) => Login());
+      case '/home':
         return MaterialPageRoute(builder: (_) => Home());
       case '/daftarbuku':
         if (args is BookType) {
