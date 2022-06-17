@@ -23,6 +23,7 @@ class _DaftarBukuState extends State<DaftarBuku> {
     final String response =
         await rootBundle.loadString('assets/data/data_buku.json');
     final data = await json.decode(response);
+    print(data);
     setState(() {
       for (var i = 0; i < data.length; i++) {
         list_buku.add(Buku(
@@ -45,13 +46,15 @@ class _DaftarBukuState extends State<DaftarBuku> {
 
   BookType tipe_buku = BookType.Unidentified;
 
-  _DaftarBukuState(this.tipe_buku);
+  _DaftarBukuState(this.tipe_buku) {
+    readJson();
+  }
 
   @override
   Widget build(BuildContext context) {
     String str_buku = tipe_buku.toString();
     final str_split = str_buku.split('.');
-    readJson();
+
     return Scaffold(
         floatingActionButton: FloatingActionButton(
             child: Icon(

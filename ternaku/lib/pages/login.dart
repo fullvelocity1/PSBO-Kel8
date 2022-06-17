@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ternaku/constants.dart';
 import 'package:ternaku/pages/components/rounded_button.dart';
-import 'package:ternaku/pages/home.dart';
+import 'package:ternaku/helpers/loginAuth.dart';
+import 'package:ternaku/model/user.dart';
 
 class Login extends StatelessWidget {
   const Login({Key? key}) : super(key: key);
@@ -9,6 +10,8 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    String email_value = '';
+    String password_value = '';
     return Scaffold(
         body: Container(
       height: size.height,
@@ -47,7 +50,9 @@ class Login extends StatelessWidget {
                               color: Color(0xFFF8F4F0),
                               borderRadius: BorderRadius.circular(10)),
                           child: TextField(
-                            onChanged: (value) {},
+                            onChanged: (value) {
+                              email_value = value;
+                            },
                             decoration: InputDecoration(
                                 hintText: "Email",
                                 border: InputBorder.none,
@@ -64,7 +69,9 @@ class Login extends StatelessWidget {
                                 color: Color(0xFFF8F4F0),
                                 borderRadius: BorderRadius.circular(10)),
                             child: TextField(
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                password_value = value;
+                              },
                               obscureText: true,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -72,17 +79,23 @@ class Login extends StatelessWidget {
                               ),
                             )),
                         RoundedButton(
-                            text: "Masuk",
-                            press: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return Home();
-                                  },
-                                ),
+                          text: "Masuk",
+                          press: () {
+                            User login_user = User(email_value, password_value);
+                            LoginAuth authenticator = LoginAuth(login_user);
+                            String response = authenticator.userAuth();
+                            if (response == "Login Successful") {
+                              Navigator.of(context).pushNamed('/home');
+                            } else {
+                              SnackBar snackBar = SnackBar(
+                                content: Text(email_value + password_value),
                               );
-                            })
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            }
+                            email_value = response;
+                          },
+                        )
                       ],
                     ),
                   )

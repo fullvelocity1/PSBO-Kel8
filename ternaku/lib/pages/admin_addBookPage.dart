@@ -64,16 +64,16 @@ class _BookFormState extends State<BookForm> {
             if (value != null) _judulbuku = value;
           }
           if (textInput == "Penulis") {
-            if (value != null) _judulbuku = value;
+            if (value != null) _penulis = value;
           }
           if (textInput == "Harga") {
-            if (value != null) _judulbuku = value;
+            if (value != null) _harga = value;
           }
           if (textInput == "Halaman") {
-            if (value != null) _judulbuku = value;
+            if (value != null) _pages = value;
           }
           if (textInput == "Genre") {
-            if (value != null) _judulbuku = value;
+            if (value != null) _genre = value;
           }
         },
       ),
