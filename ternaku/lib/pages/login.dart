@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ternaku/constants.dart';
 import 'package:ternaku/pages/components/rounded_button.dart';
-import 'package:ternaku/pages/components/rounded_input_field.dart';
-import 'package:ternaku/pages/components/rounded_pass_field.dart';
 import 'package:ternaku/pages/home.dart';
 
 class Login extends StatelessWidget {
@@ -39,10 +37,40 @@ class Login extends StatelessWidget {
                           "Masuk Akun",
                           style: TextStyle(),
                         ),
-                        RoundedInputField(
-                            hintText: "email", onChanged: (value) {}),
-                        RoundedPassField(
-                            onChanged: (value) {}, hintText: "Password"),
+                        Container(
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          width: size.width * 0.8,
+                          height: size.height * 0.08,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                          decoration: BoxDecoration(
+                              color: Color(0xFFF8F4F0),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: TextField(
+                            onChanged: (value) {},
+                            decoration: InputDecoration(
+                                hintText: "Email",
+                                border: InputBorder.none,
+                                fillColor: TextFieldColor),
+                          ),
+                        ),
+                        Container(
+                            margin: EdgeInsets.symmetric(vertical: 10),
+                            width: size.width * 0.8,
+                            height: size.height * 0.08,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 5),
+                            decoration: BoxDecoration(
+                                color: Color(0xFFF8F4F0),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: TextField(
+                              onChanged: (value) {},
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: "Password",
+                              ),
+                            )),
                         RoundedButton(
                             text: "Masuk",
                             press: () {
