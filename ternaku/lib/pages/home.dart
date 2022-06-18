@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: primaryColor,
-          title: Text((user is Admin).toString()),
+          title: Text("Bookagraphy"),
         ),
         body: Center(
           child: Column(
